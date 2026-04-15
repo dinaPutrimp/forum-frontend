@@ -7,9 +7,7 @@ import type { ThreadsResponse } from "../../types/thread";
 const Threads = () => {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
-
   const { createThread, data, getThreads, loading } = useThreads();
-
   const threadsResponse = data as ThreadsResponse | null;
 
   useEffect(() => {
@@ -25,14 +23,15 @@ const Threads = () => {
   };
 
   return (
-    <div className="min-h-screen flex-1 p-6 bg-[#141414]">
+    <div className="min-h-screen flex-1 p-3 sm:p-6 bg-[#141414]">
       <p className="text-xl font-semibold mb-4">Threads</p>
+
       <div className="bg-[#1e1e1e] border border-[#2e2e2e] rounded-2xl overflow-hidden">
-        <div className="p-5 border-b border-[#2a2a2a]">
-          <p className="text-[#e0e0e0] font-small">Create thread</p>
+        <div className="p-4 sm:p-5 border-b border-[#2a2a2a]">
+          <p className="text-[#e0e0e0] text-sm">Create thread</p>
         </div>
 
-        <div className="p-5">
+        <div className="p-4 sm:p-5">
           <input
             type="text"
             placeholder="Thread title..."
@@ -50,24 +49,25 @@ const Threads = () => {
           />
         </div>
 
-        <div className="px-5 py-3 border-t border-[#2a2a2a] flex items-center justify-between">
-          <span className="text-sm text-[#555]">
+        <div className="px-4 sm:px-5 py-3 border-t border-[#2a2a2a] flex items-center justify-between gap-3">
+          <span className="text-xs sm:text-sm text-[#555] truncate">
             {100 - title.length} characters remaining
           </span>
           <button
             disabled={loading}
-            className="bg-[#E8FF47] text-[#111] rounded-full px-5 py-2 text-sm font-small hover:bg-[#d4eb3a] transition-colors"
+            className="bg-[#E8FF47] text-[#111] rounded-full px-4 sm:px-5 py-2 text-sm font-medium hover:bg-[#d4eb3a] transition-colors disabled:opacity-50 whitespace-nowrap flex-shrink-0"
             onClick={handlePostThread}
           >
             Post
           </button>
         </div>
       </div>
-      <div className="mt-8">
+
+      <div className="mt-6 sm:mt-8 space-y-3">
         {loading && <Spinner />}
         {!loading &&
           threadsResponse?.data.threads.map((thread) => (
-            <ThreadCard thread={thread} />
+            <ThreadCard key={thread.id} thread={thread} />
           ))}
       </div>
     </div>

@@ -124,29 +124,6 @@ const ThreadCard = ({ thread }: { thread: ThreadSummary }) => {
               </svg>
               {thread.comment_count} replies
             </button>
-
-            {/* <button
-              onClick={handleLike}
-              className={`flex items-center gap-1.5 text-xs transition-colors ${
-                liked ? "text-[#ff4d6d]" : "text-[#666] hover:text-[#ff4d6d]"
-              }`}
-            >
-              <svg
-                width="15"
-                height="15"
-                viewBox="0 0 24 24"
-                fill={liked ? "currentColor" : "none"}
-                stroke="currentColor"
-                strokeWidth="2"
-                style={{
-                  transition: "transform 0.15s ease",
-                  transform: liked ? "scale(1.2)" : "scale(1)",
-                }}
-              >
-                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-              </svg>
-              {likeCount > 0 ? likeCount : "like"}
-            </button> */}
           </div>
         </div>
       </div>

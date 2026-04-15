@@ -12,44 +12,70 @@ const Sidebar = () => {
       path: "/",
       icon: <FaHome />,
       label: "Home",
-      className: "flex items-center gap-3 hover:text-[#d4eb3a] cursor-pointer",
+      className: "hover:text-[#d4eb3a] cursor-pointer",
     },
     {
       path: "/profile",
       icon: <FaUser />,
       label: "Profile",
-      className: "flex items-center gap-3 hover:text-[#d4eb3a] cursor-pointer",
+      className: "hover:text-[#d4eb3a] cursor-pointer",
     },
     {
       path: "/notifications",
       icon: <FaBell />,
       label: "Notification",
-      className: "flex items-center gap-3 hover:text-[#d4eb3a] cursor-pointer",
+      className: "hover:text-[#d4eb3a] cursor-pointer",
     },
     {
       path: "",
       icon: <FaSignOutAlt />,
       label: "Logout",
-      className: "flex items-center gap-3 hover:text-red-500 cursor-pointer",
+      className: "hover:text-red-500 cursor-pointer",
     },
   ];
+
   return (
-    <div className="w-64 bg-dark p-6 min-h-screen">
-      <p className="text-xl text-white font-semibold text-center mb-6">Forum</p>
+    <div className="bg-dark min-h-screen w-16 md:w-64 flex flex-col p-3 md:p-6 transition-all duration-300">
+      <p className="text-xl text-white font-semibold text-center mb-6 hidden md:block">
+        Forum
+      </p>
+      <p className="text-white font-semibold text-center mb-6 block md:hidden text-lg">
+        F
+      </p>
+
       <ul className="space-y-4">
         {menus.map((menu, index) => {
-          const isLast = menus?.length - 1 === index;
+          const isLast = menus.length - 1 === index;
+          const activeColor =
+            isActive(menu.path) && !isLast ? "text-white" : "text-[#555]";
+
+          const content = (
+            <>
+              <span className="text-lg flex-shrink-0">{menu.icon}</span>
+              <span className="hidden md:inline">{menu.label}</span>
+            </>
+          );
+
           return (
             <li
-              className={`${
-                isActive(menu.path) && !isLast ? "text-white" : "text-[#555]"
-              } ${menu.className}`}
+              key={index}
+              title={menu.label}
+              className={`flex items-center gap-3 justify-center md:justify-start ${activeColor} ${menu.className}`}
             >
-              <>{menu.icon}</>
               {isLast ? (
-                <span onClick={logout}>{menu.label}</span>
+                <button
+                  onClick={logout}
+                  className="flex items-center gap-3 justify-center md:justify-start w-full"
+                >
+                  {content}
+                </button>
               ) : (
-                <Link to={menu.path}>{menu.label}</Link>
+                <Link
+                  to={menu.path}
+                  className="flex items-center gap-3 justify-center md:justify-start w-full"
+                >
+                  {content}
+                </Link>
               )}
             </li>
           );

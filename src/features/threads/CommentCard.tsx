@@ -176,7 +176,7 @@ const CommentCard = ({
         </div>
 
         {showReplyInput && (
-          <div className="mt-1 mb-1 ml-9">
+          <div className="mt-1 mb-1 ml-2">
             <div className="flex items-center gap-2 mb-2">
               <div
                 style={{ background: colorFromString() }}
@@ -212,7 +212,7 @@ const CommentCard = ({
         )}
 
         {comment.replies && comment.replies.length > 0 && (
-          <div className="mt-1 mb-2 ml-9 space-y-3">
+          <div className="mt-1 mb-2 ml-2 space-y-3">
             {comment.replies.map((reply) => (
               <ReplyCard
                 key={reply.id}
